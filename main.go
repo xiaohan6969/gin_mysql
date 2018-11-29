@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gin_mod/routers"
+	"gin_mysql/routers"
 )
 
 func main() {

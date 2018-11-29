@@ -1,12 +1,11 @@
 package controllers
 
-
-
-import (
-	"fmt"
-	"github.com/gin-gonic/gin"
-)
-
-func Runserver(context *gin.Context) {
-	fmt.Println("hello")
-}
+//
+//import (
+//	"gin_mysql/models"
+//	"github.com/gin-gonic/gin"
+//)
+//
+//func Runserver(c *gin.Context) {
+//	models.Conntct_mongo(c)
+//}
