@@ -2,7 +2,7 @@ package routers
 
 import (
 	. "gin_mysql/controllers"
-	. "gin_mysql/models"
+	. "gin_mysql/models/mongo_handle"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -24,5 +24,5 @@ func RegisterAPIRouter() {
 	}
 
 	// 监听端口
-	http.ListenAndServe(":8000", router)
+	http.ListenAndServe(":9769", router)
 }

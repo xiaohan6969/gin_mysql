@@ -1,8 +1,9 @@
-package models
+package mysql_handle
 
 import (
 	"database/sql"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 //  GET 请求
@@ -39,7 +40,7 @@ func Connect_mysql(c *gin.Context) {
 		status = 300
 		desc = "数据库连接失败"
 	} else {
-		status = 200
+		status = http.StatusOK
 		desc = "数据库连接成功"
 	}
 	c.JSON(200, gin.H{"status": status, "msg": desc})

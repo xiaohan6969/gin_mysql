@@ -1,11 +1,11 @@
-package models
+package mongo_handle
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
+	"net/http"
 )
 
 //定义 Person 结构，字段须为首字母大写
@@ -18,7 +18,6 @@ func Conntct_mongo(c *gin.Context) {
 		Age    int
 		Phone  string
 	}
-
 	//可本地可远程，不指定协议时默认为http协议访问，此时需要设置 mongodb 的
 	//nohttpinterface=false来打开httpinterface。
 	//也可以指定mongodb协议，如 "mongodb://127.0.0.1:27017"
@@ -36,21 +35,30 @@ func Conntct_mongo(c *gin.Context) {
 	//选择数据库与集合
 	a := session.DB("stu").C("haha")
 	//插入文档
-	err = a.Insert(
-		&Person{Name: "陈耀灿", Place: "上海", Gender: "男", Age: 23, Phone: "130-7881-7881"},
-		&Person{Name: "彭帆", Place: "成都", Gender: "男", Age: 24, Phone: "130-7881-5721"})
-	//出错判断
-	if err != nil {
-		log.Fatal(err)
-	}
+
+	//err = a.Insert(
+	//	&Person{Name: "陈耀灿", Place: "上海", Gender: "男", Age: 23, Phone: "130-7881-7881"},
+	//	&Person{Name: "彭帆", Place: "成都", Gender: "男", Age: 24, Phone: "130-7881-5721"})
+	////出错判断
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 	//查询文档
 	result := Person{}
 	//注意mongodb存储后的字段大小写问题
-	err = a.Find(bson.M{"name": "陈耀灿"}).One(&result)
+	err = a.Find(bson.M{"name": "彭帆"}).One(&result)
 	//出错判断
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Phone: %d , mongo数据库添加成功", result.Phone)
+
+	c.JSON(http.StatusOK, gin.H{
+		"姓名": result.Name,
+		"电话": result.Phone,
+		"地址": result.Place,
+		"年龄": result.Age,
+		"性别": result.Gender,
+	})
+	//fmt.Printf("Phone: %d , mongo数据库添加成功", result.Phone)
 
 }
