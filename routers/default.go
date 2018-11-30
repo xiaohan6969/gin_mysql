@@ -22,6 +22,10 @@ func RegisterAPIRouter() {
 	{
 		myselfpractice.GET("/mysql", MyselfAPI1)
 	}
+	test := router.Group("/test")
+	{
+		test.POST("/test", Test)
+	}
 
 	// 监听端口
 	http.ListenAndServe(":9769", router)

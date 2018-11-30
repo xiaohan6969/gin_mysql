@@ -36,13 +36,13 @@ func Conntct_mongo(c *gin.Context) {
 	a := session.DB("stu").C("haha")
 	//插入文档
 
-	//err = a.Insert(
-	//	&Person{Name: "陈耀灿", Place: "上海", Gender: "男", Age: 23, Phone: "130-7881-7881"},
-	//	&Person{Name: "彭帆", Place: "成都", Gender: "男", Age: 24, Phone: "130-7881-5721"})
-	////出错判断
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
+	err = a.Insert(
+		&Person{Name: "陈耀灿", Place: "上海", Gender: "男", Age: 23, Phone: "130-7881-7881"},
+		&Person{Name: "彭帆", Place: "成都", Gender: "男", Age: 24, Phone: "130-7881-5721"})
+	//出错判断
+	if err != nil {
+		log.Fatal(err)
+	}
 	//查询文档
 	result := Person{}
 	//注意mongodb存储后的字段大小写问题
