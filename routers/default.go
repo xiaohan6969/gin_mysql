@@ -17,16 +17,13 @@ func RegisterAPIRouter() {
 	{
 		routerDatasource.GET("/mongo", Conntct_mongo)
 	}
-
+	//分组示例
 	myselfpractice := router.Group("/v2")
 	{
 		myselfpractice.GET("/mysql", MyselfAPI1)
 	}
-	test := router.Group("/test")
-	{
-		test.POST("/test", Test)
-	}
 
+	router.POST("/test",Test)
 	// 监听端口
 	http.ListenAndServe(":9769", router)
 }
